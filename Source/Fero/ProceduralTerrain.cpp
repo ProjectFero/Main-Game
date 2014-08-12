@@ -1,18 +1,15 @@
-
-
 #include "Fero.h"
 #include "Landscape/Landscape.h"
 #include "Landscape/LandscapeComponent.h"
-#include "Runtime/Engine/Classes/Engine/Texture2D.h"
+#include "Utility/BasicUtility.h"
 #include "ProceduralTerrain.h"
-#define WITH_EDITOR
+
 
 UProceduralTerrain::UProceduralTerrain(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
 {
 
 }
-
 
 void UProceduralTerrain::GenerateTerrain(ALandscape *landscape)
 {
@@ -35,16 +32,12 @@ void UProceduralTerrain::GenerateTerrain(ALandscape *landscape)
 	region.Width = sizeX;
 	region.Height = sizeY;
 
-
-
-	//foreach pixel, I will change the height. Today, it's done by the CPU but I will move it later to the GPU
 	for (int x = 0; x < sizeX; x++)
 	{
 		for (int y = 0; y < sizeY; y++)
 		{
-
+			//Put generation code here
 		}
 	}
-
-	heightMap->UpdateTextureRegions(0, 1, &region, pitch, pixelSize, NULL, false);
+	UpdateTextureRegions(heightMap, 0, 1, &region, pitch, pixelSize, NULL, false);
 }
