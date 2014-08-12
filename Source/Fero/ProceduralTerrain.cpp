@@ -2,8 +2,10 @@
 
 #include "Fero.h"
 #include "Landscape/Landscape.h"
+#include "Landscape/LandscapeComponent.h"
+#include "Runtime/Engine/Classes/Engine/Texture2D.h"
 #include "ProceduralTerrain.h"
-
+#define WITH_EDITOR
 
 UProceduralTerrain::UProceduralTerrain(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
@@ -14,7 +16,8 @@ UProceduralTerrain::UProceduralTerrain(const class FPostConstructInitializePrope
 
 void UProceduralTerrain::GenerateTerrain(ALandscape *landscape)
 {
-	UTexture2D *heightMap = landscape->LandscapeComponents[0]->HeightmapTexture;
+	ULandscapeComponent *Component = landscape->LandscapeComponents[0];
+	UTexture2D *heightMap = Component->HeightmapTexture;
 	EPixelFormat formatPixel = heightMap->GetPixelFormat();
 
 	//texture resolution
