@@ -158,6 +158,7 @@ void AFeroCharacter::PickUpItem(APickUpItem* Item)
 	{
 		ItemInventory.Add(Item); // add it to the array
 		Item->PickedUp(); // hide mesh 
+		Item->ptr = this;
 	}
 }
 TArray<class APickUpItem*> AFeroCharacter::GetCurrentInventory()

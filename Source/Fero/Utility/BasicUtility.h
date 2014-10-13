@@ -1,4 +1,3 @@
-#include "Texture.h"
 #include "Runtime/Engine/Classes/Engine/Texture2D.h"
 struct FUpdateTextureRegionsData
 {

@@ -3,13 +3,15 @@
 
 #include "GameFramework/SpringArmComponent.h"
 #include "Entity/Inventory/PickUpItem.h"
+#include "Entity/WeaponType.h"
 #include "FeroCharacter.generated.h"
 
 UCLASS(config=Game)
 class AFeroCharacter : public ACharacter
 {
 	GENERATED_UCLASS_BODY()
-
+	
+	RPG_Stat *Stat;
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	TSubobjectPtr<class USpringArmComponent> CameraBoom;

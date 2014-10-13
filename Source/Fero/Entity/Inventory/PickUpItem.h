@@ -14,9 +14,15 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
 	FString ItemName;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
+	FString Description;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
 	int32 Value;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
+	int32 Rating;
 
 	UFUNCTION(BlueprintImplementableEvent, meta = (FriendlyName = "Item: Used"))
 	virtual void Used();
@@ -38,6 +44,6 @@ public:
 		Component.Get()->SetWorldLocation(Mesh.Get()->RelativeLocation);
 		return Component->IsOverlappingComponent(point);
 	}
-private:
-	float Radius;
+
+	class AFeroCharacter *ptr;
 };
