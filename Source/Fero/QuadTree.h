@@ -8,33 +8,14 @@
 #include "GameFramework/Actor.h"
 #include "QuadTree.generated.h"
 
-
-///**
-//* A single point in the QuadTree
-//*/
-//USTRUCT()
-//struct FAVertex
-//{
-//	GENERATED_USTRUCT_BODY()
-//
-//	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Vertex)
-//	float m_X;
-//
-//	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Vertex)
-//	float m_Y;
-//
-//	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Vertex)
-//	float m_Z;
-//};
-
 /**
 * Type of node in the QuadTree
 */
 UENUM(BlueprintType)
 enum EEQuadNodeType
 {
-	LEAF    UMETA(DisplayName="Leaf"),
-	NODE    UMETA(DisplayName="Node")
+	LEAF    UMETA(DisplayName = "Leaf"),
+	NODE    UMETA(DisplayName = "Node")
 };
 
 /**
@@ -44,31 +25,32 @@ USTRUCT()
 struct FAQuadNode
 {
 	GENERATED_USTRUCT_BODY()
-	
+
 	/** The Four Children for the QuadTree Node */
 	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadNode)
 	FAQuadNode* m_Children[4];
-	
+
 	/** ID's of the children */
 	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadNode)
 	int32 m_Branches[4];
 
 	/** Is this a leaf node or a regular node */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadNode)
-	TEnumAsByte<EEQuadNodeType> m_Type;
+		TEnumAsByte<EEQuadNodeType> m_Type;
 
 	/** ID of the node */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadNode)
-	int32 m_pNodeID;
+		int32 m_pNodeID;
 
 	/** ID of the parent node */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadNode)
-	int32 m_ParentID;
+		int32 m_ParentID;
 
 	/** Bounding Coordinates for the node */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadNode)
-	TArray<FVector> m_Bounds;
+		TArray<FVector> m_Bounds;
 };
+
 
 
 /**
@@ -80,7 +62,7 @@ class FERO_API AQuadTree : public AActor
 	GENERATED_UCLASS_BODY()
 
 public:
-	
+
 	void LoadQuadTree();
 
 	/** Loads the QuadTree heightmap */
@@ -121,47 +103,48 @@ public:
 
 	/** Name of the heightmap */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = QuadTree)
-	FString m_HeightmapName;
+		FString m_HeightmapName;
 
 	/** The Width and Height of the QuadTree */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = QuadTree)
-	int32 m_QuadTreeSize;
+		int32 m_QuadTreeSize;
 
 	/** The total amount of leaves in the QuadTree */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = QuadTree)
-	int32 m_TotalLeaves;
+		int32 m_TotalLeaves;
 
 	/** Must be one more that it should be */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = QuadTree)
-	int32 m_LeafWidth;
+		int32 m_LeafWidth;
 
 	/** The default size of each node */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = QuadTree)
-	int32 m_NodeSize;
+		int32 m_NodeSize;
 
 	/** This is incremented as the QuadTree is being built */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadTree)
-	int32 m_TotalTreeID;
+		int32 m_TotalTreeID;
 
 	/** The amount of nodes in the QuadTree */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = QuadTree)
-	int32 m_NodeCount;
+		int32 m_NodeCount;
 
 	/** Scales the x and z positions of each vertex */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = QuadTree)
-	int32 m_TerrScale;
+		int32 m_TerrScale;
 
 	/** Amount to scale the heightmap after it is loaded */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = QuadTree)
-	float m_HeightScale;
+		float m_HeightScale;
 
 	/** Do we want to use the heightmap or make the QuadTree flat */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = QuadTree)
-	bool m_UseHeight;
+		bool m_UseHeight;
 
 	/** List of nodes in the QuadTree */
 	//UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = QuadTree)
 	FAQuadNode* m_nodes;
 
 	TArray<FGeneratedMeshTriangle> m_Triangles;
+	
 };

@@ -17,7 +17,7 @@ public:
 
 	/** Loads the heightmap */
 	void Load(FString heightmapName, int32 width, int32 height, float heightScale);
-	
+
 	/** Samples the height at a specefic index */
 	float SampleHeight(int32 index);
 
@@ -37,9 +37,9 @@ public:
 	void Smooth();
 
 	/** Function computes the average height of the ij element.
-	    It averages itself with its eight neighbor pixels.  Note
-	    that if a pixel is missing neighbor, we just don't include it
-	    in the average--that is, edge pixels don't have a neighbor pixel. */
+	It averages itself with its eight neighbor pixels.  Note
+	that if a pixel is missing neighbor, we just don't include it
+	in the average--that is, edge pixels don't have a neighbor pixel. */
 	float Average(int x, int z);
 
 private:
@@ -53,4 +53,5 @@ private:
 
 	/** List of the height values */
 	TArray<float> m_Heightmap;
+	
 };

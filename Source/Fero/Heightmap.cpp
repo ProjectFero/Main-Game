@@ -1,6 +1,6 @@
 
 
-#include "TerrainGeneration.h"
+#include "Fero.h"
 #include "Heightmap.h"
 
 #include <fstream>
@@ -9,7 +9,7 @@ using namespace std;
 AHeightmap::AHeightmap(const class FPostConstructInitializeProperties& PCIP)
 	: Super(PCIP)
 {
-	
+
 }
 
 

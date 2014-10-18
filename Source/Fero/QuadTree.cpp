@@ -1,6 +1,6 @@
 
 
-#include "TerrainGeneration.h"
+#include "Fero.h"
 #include "QuadTree.h"
 
 
@@ -13,10 +13,10 @@ AQuadTree::AQuadTree(const class FPostConstructInitializeProperties& PCIP)
 	//Create a default 128x128 mesh
 	/*for (int32 y = 0; y < 8; y++)
 	{
-		for (int32 x = 0; x < 8; x++)
-		{
-			m_Vertices.Add(FVector(x, y, 0));
-		}
+	for (int32 x = 0; x < 8; x++)
+	{
+	m_Vertices.Add(FVector(x, y, 0));
+	}
 	}*/
 
 	m_Vertices.Add(FVector(20, 5, 0));
@@ -46,6 +46,7 @@ AQuadTree::AQuadTree(const class FPostConstructInitializeProperties& PCIP)
 	RootComponent = m_Mesh;
 }
 
+
 void AQuadTree::Lathe(const TArray<FVector>& points, TArray<FGeneratedMeshTriangle>& triangles, int32 segments)
 {
 	UE_LOG(LogClass, Log, TEXT("AQuadTree::Lathe POINTS %d"), points.Num());
@@ -54,8 +55,8 @@ void AQuadTree::Lathe(const TArray<FVector>& points, TArray<FGeneratedMeshTriang
 	float angle = FMath::DegreesToRadians(360.0f / segments);
 	float sinA = FMath::Sin(angle);
 	float cosA = FMath::Cos(angle);
-	
-	
+
+
 	//This implementation is rotation around the X Axis, other formulas below
 
 	//Z Axis Rotation
@@ -179,7 +180,7 @@ void AQuadTree::LatheMesh(FAQuadNode* node)
 
 	FGeneratedMeshTriangle tri1;
 	FGeneratedMeshTriangle tri2;
-	
+
 	//Create two triangles based on the bounds for this mesh
 	tri1.Vertex0 = bounds[0];
 	tri1.Vertex1 = bounds[3];
@@ -203,7 +204,7 @@ void AQuadTree::LoadQuadTree()
 
 void AQuadTree::LoadMap(AHeightmap* heightmap)
 {
-	
+
 }
 
 void AQuadTree::LoadMap()
@@ -239,7 +240,7 @@ void AQuadTree::Initialize()
 void AQuadTree::Create()
 {
 	FVector RootBounds[4];
-	
+
 	RootBounds[0].X = 0;
 	RootBounds[0].Y = 0;
 	RootBounds[0].Z = 0;
@@ -344,13 +345,13 @@ void AQuadTree::CreateNode(FAQuadNode*& node, FVector bounds[4], int32 parentID,
 	}
 	else//Create a node
 	{
-		#pragma region "Child Node 1"
+#pragma region "Child Node 1"
 		//======================================================================================================================
 		//Child Node 1
 		m_TotalTreeID++;
 		node->m_Branches[0] = m_TotalTreeID;
 		FVector ChildBounds1[4];
-		
+
 		//Top-Left
 		ChildBounds1[0].X = bounds[0].X;
 		ChildBounds1[0].Y = 0;
@@ -373,9 +374,9 @@ void AQuadTree::CreateNode(FAQuadNode*& node, FVector bounds[4], int32 parentID,
 
 		CreateNode(node->m_Children[0], ChildBounds1, nodeID, m_TotalTreeID);
 		//======================================================================================================================
-		#pragma endregion
+#pragma endregion
 
-		#pragma region "Child Node 2"
+#pragma region "Child Node 2"
 		//======================================================================================================================
 		//Child Node 2
 		m_TotalTreeID++;
@@ -404,9 +405,9 @@ void AQuadTree::CreateNode(FAQuadNode*& node, FVector bounds[4], int32 parentID,
 
 		CreateNode(node->m_Children[1], ChildBounds2, nodeID, m_TotalTreeID);
 		//======================================================================================================================
-		#pragma endregion
+#pragma endregion
 
-		#pragma region "Child Node 3"
+#pragma region "Child Node 3"
 		//======================================================================================================================
 		//Child Node 3
 		m_TotalTreeID++;
@@ -435,9 +436,9 @@ void AQuadTree::CreateNode(FAQuadNode*& node, FVector bounds[4], int32 parentID,
 
 		CreateNode(node->m_Children[2], ChildBounds3, nodeID, m_TotalTreeID);
 		//======================================================================================================================
-		#pragma endregion
+#pragma endregion
 
-		#pragma region "Child Node 4"
+#pragma region "Child Node 4"
 		//======================================================================================================================
 		//Child Node 4
 		m_TotalTreeID++;
@@ -466,6 +467,6 @@ void AQuadTree::CreateNode(FAQuadNode*& node, FVector bounds[4], int32 parentID,
 
 		CreateNode(node->m_Children[3], ChildBounds4, nodeID, m_TotalTreeID);
 		//======================================================================================================================
-		#pragma endregion
+#pragma endregion
 	}
 }

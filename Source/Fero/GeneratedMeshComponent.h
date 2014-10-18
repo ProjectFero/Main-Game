@@ -14,10 +14,10 @@ struct FGeneratedMeshTriangle
 	FVector Vertex0;
 
 	UPROPERTY(EditAnywhere, Category = Triangle)
-	FVector Vertex1;
+		FVector Vertex1;
 
 	UPROPERTY(EditAnywhere, Category = Triangle)
-	FVector Vertex2;
+		FVector Vertex2;
 };
 
 /**
@@ -28,6 +28,7 @@ class FERO_API UGeneratedMeshComponent : public UMeshComponent
 {
 	GENERATED_UCLASS_BODY()
 
+	
 	/** Set the geometry to use on this triangle mesh */
 	UFUNCTION(BlueprintCallable, Category = "Components|CustomMesh")
 	bool SetGeneratedMeshTriangles(const TArray<FGeneratedMeshTriangle>& Triangles);
